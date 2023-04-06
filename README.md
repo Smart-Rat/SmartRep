@@ -1,5 +1,6 @@
 # Pixel Castle
-![Логотип](Assets\Icons\PixelCastle.png "Логотип игры(временный)")
+
+![Логотип](https://github.com/Smart-Rat/SmartRep/blob/main/Assets/Icons/PixelCastle.png?raw=true "Логотип игры(временный)")
 
 1. *Pixel Castle* - игра, где персонаж пробирается по процедурно генерируемому замку, 
 постоянно умирая, но заходя дальше благодаря опыту своих прошлых жизней. В ней 
