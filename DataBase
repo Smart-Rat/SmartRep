@@ -1,0 +1,83 @@
+Create table _User
+(U_ID int identity (1,1) primary key,
+S_Name nvarchar(50) not null,
+S_Surname nvarchar(50) null,
+U_Telephone nvarchar(50) null,
+U_Mail nvarchar(50) null,
+U_City nvarchar(50) null,
+U_Street nvarchar(50) null,
+U_House int null,
+U_Building nvarchar(2) null,
+U_Password nvarchar(50) not null,
+U_Deleted bit not null
+)
+
+Create table _Filter
+(F_ID int not null Primary key,
+F_Name nvarchar(50) not null,
+F_Deleted bit not null
+)
+
+Create table Category
+(C_ID int Primary key  not null,
+C_Name nvarchar(50) not null,
+F_ID int null,
+S_Deleted bit not null
+foreign key (F_ID) references _Filter(F_ID)
+)
+
+create table Staff
+(S_ID int Primary key not null,
+S_Name nvarchar(50) not null,
+S_Surname nvarchar(50) not null,
+S_Job nvarchar(50) not null,
+S_Salary decimal(2) not null,
+S_Deleted bit not null
+)
+
+Create table Goods
+(G_ID int Primary key not null,
+G_Name nvarchar(50) not null,
+G_Num int null,
+G_Price decimal(2) not null,
+C_ID int not null,
+F_ID int not null,
+S_ID int not null,
+G_Deleted bit not null
+foreign key (C_ID) references Category(C_ID),
+foreign key (F_ID) references _Filter(F_ID),
+foreign key (S_ID) references Staff(S_ID)
+)
+
+Create table Goods_Order
+( U_ID int not null,
+G_ID int not null,
+G_Num int not null,
+G_Price decimal(2) not null
+Primary key (U_ID,G_ID)
+foreign key 
+)
+
+Create table Basket
+(B_ID int Primary key not null,
+U_ID int  not null,
+G_ID int not null,
+G_Price decimal(2) not null,
+G_Num int not null,
+B_Deleted bit not null
+foreign key (U_ID) references _User(U_ID),
+foreign key (G_ID) references Goods(G_ID)
+)
+
+Create table _Order
+(U_ID int  not null,
+O_Date datetime not null,
+O_DeliveryStatus nvarchar(20) not null,
+G_ID int not null,
+G_Price decimal(2) not null,
+G_Num int not null,
+O_ID int not null,
+B_ID int not null,
+O_Deleted bit not null
+Primary key (O_ID)
+)
